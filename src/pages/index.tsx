@@ -18,7 +18,7 @@ const HomePage: React.FC<HomePageProps> = ({ featuredProjects, recentPosts }) =>
     >
       <section className="hero">
         <div className="container">
-          <span className="hero-welcome">welcome, i'm</span>
+          <span className="hero-welcome">welcome, i&apos;m</span>
           <h1>Hunter</h1>
           <div className="hero-meta">
             <div className="hero-roles">
