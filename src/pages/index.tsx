@@ -24,28 +24,27 @@ const HomePage: React.FC<HomePageProps> = ({
       title="My Portfolio & Blog"
       description="Welcome to my personal portfolio and blog where I showcase my work and share my thoughts."
     >
-      {/* Add scroll progress indicator */}
       <ScrollProgress color="#4ff0b7" position="top" height={3} />
 
-      {/* Main content with parallax effects */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <HeroSection />
-      </div>
-
-      {/* Full-width section with white background that forces proper text color */}
-      <div className="w-full bg-white text-black py-12 md:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ParallaxSection direction="up" speed={0.3}>
-            <FeaturedProjects projects={featuredProjects} />
-          </ParallaxSection>
+      <ParallaxSection direction="up" speed={0.1}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+          <HeroSection />
         </div>
-      </div>
+      </ParallaxSection>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <ParallaxSection direction="down" speed={0.2}>
+      <ParallaxSection direction="up" speed={0.3}>
+        <div className="w-full bg-white text-black py-12 md:py-16 relative">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <FeaturedProjects projects={featuredProjects} />
+          </div>
+        </div>
+      </ParallaxSection>
+
+      <ParallaxSection direction="down" speed={0.5}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           <RecentPosts posts={recentPosts} />
-        </ParallaxSection>
-      </div>
+        </div>
+      </ParallaxSection>
     </Layout>
   );
 };

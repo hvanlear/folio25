@@ -222,7 +222,25 @@ a:hover {
   font-size: 1.5rem;
   font-weight: 300;
   padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.hero-role::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: var(--text-color);
+  opacity: 0.75;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.hero-role.animate::after {
+  transform: scaleX(1);
 }
 
 .hero-role-text {

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AnimateInView from "../ui/AnimateInView";
+import { inView } from "motion";
 
 const HeroSection: React.FC = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [currentDate, setCurrentDate] = useState<string>("");
+  const rolesRef = useRef<HTMLDivElement>(null);
 
   // Hardcoded location
   const city = "RALEIGH";
@@ -41,6 +43,26 @@ const HeroSection: React.FC = () => {
 
     updateDateTime();
     const interval = setInterval(updateDateTime, 60000);
+
+    // Setup the animation for hero-role elements
+    if (rolesRef.current) {
+      const cleanupInView = inView(rolesRef.current, (entry) => {
+        // Find all .hero-role elements
+        const roleElements = entry.querySelectorAll('.hero-role');
+        
+        // Add animate class with a delay for each role
+        roleElements.forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.add('animate');
+          }, 300 + (index * 200)); // Start after 300ms, then 200ms between each
+        });
+      }, { amount: 0.2 }); // Trigger when 20% of the element is in view
+      
+      return () => {
+        clearInterval(interval);
+        cleanupInView();
+      };
+    }
 
     return () => clearInterval(interval);
   }, []);
@@ -98,7 +120,7 @@ const HeroSection: React.FC = () => {
             </div>
           </AnimateInView>
           <AnimateInView animation="slide-up" delay={0.6}>
-            <div className="hero-roles w-full md:max-w-xs lg:max-w-md flex flex-col gap-4">
+            <div className="hero-roles w-full md:max-w-xs lg:max-w-md flex flex-col gap-4" ref={rolesRef}>
               <div className="flex flex-col gap-2">
                 <span className="hero-role text-sm md:text-base font-medium">
                   DESIGN
