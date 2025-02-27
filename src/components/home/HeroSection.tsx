@@ -3,27 +3,31 @@ import React, { useState, useEffect } from "react";
 const HeroSection: React.FC = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [currentDate, setCurrentDate] = useState<string>("");
-  
+
   // Hardcoded location
   const city = "RALEIGH";
   const region = "NORTH CAROLINA";
 
   // Format time in 12-hour format (HH:MM AM/PM)
   const formatTime = (date: Date): string => {
-    return date.toLocaleString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    }).toUpperCase();
+    return date
+      .toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      })
+      .toUpperCase();
   };
 
   // Format date (MMM DD YYYY)
   const formatDate = (date: Date): string => {
-    return date.toLocaleString("en-US", {
-      month: "short",
-      day: "2-digit",
-      year: "numeric",
-    }).toUpperCase();
+    return date
+      .toLocaleString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      })
+      .toUpperCase();
   };
 
   useEffect(() => {
@@ -33,7 +37,7 @@ const HeroSection: React.FC = () => {
       setCurrentTime(formatTime(now));
       setCurrentDate(formatDate(now));
     };
-    
+
     updateDateTime();
     const interval = setInterval(updateDateTime, 60000);
 
