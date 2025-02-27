@@ -3,7 +3,7 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useTheme } from "../../hooks/useTheme";
-import { inter, figtree } from "../../styles/font";
+import { figtree } from "../../styles/font";
 import { useRouter } from "next/router";
 
 interface LayoutProps {
@@ -28,7 +28,7 @@ const Layout: React.FC<LayoutProps> = ({
 
   return (
     <div
-      className={`min-h-screen flex flex-col ${theme} ${inter.variable} ${figtree.variable} antialiased`}
+      className={`min-h-screen flex flex-col ${theme} ${figtree.variable} antialiased`}
     >
       <Head>
         <title>{title}</title>
