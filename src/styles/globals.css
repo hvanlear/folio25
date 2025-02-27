@@ -59,12 +59,16 @@
               color var(--theme-transition-duration) var(--theme-transition-ease);
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--background-color);
   font-family: var(--font-figtree);
+  overflow-x: hidden;
 }
 
 a {
@@ -217,7 +221,6 @@ a:hover {
 .hero-role {
   font-size: 1.5rem;
   font-weight: 500;
-  border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.25rem;
 }
 
@@ -432,4 +435,9 @@ section h2 {
   .footer-content {
     grid-template-columns: 1fr;
   }
+}
+
+/* Add smooth transitions for dark mode */
+.bg-background {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-ease);
 } 

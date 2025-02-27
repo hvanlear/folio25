@@ -111,8 +111,8 @@ const HeroSection: React.FC = () => {
                 </span>
               </div>
               <span className="hero-role-text text-sm opacity-70 max-w-md">
-                Software engineer specializing in full-stack web development with
-                React, Next.js, and modern backend technologies.
+                Software engineer specializing in full-stack web development
+                with React, Next.js, and modern backend technologies.
               </span>
               <div className="animate-bounce mt-4 hidden md:block">
                 <svg
