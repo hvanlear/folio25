@@ -41,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div 
       ref={cardRef} 
-      className="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm transition-all"
+      className="project-card bg-white/80 dark:bg-gray-800/90 text-black dark:text-white rounded-lg overflow-hidden shadow-sm transition-all"
     >
       <div className="project-image">
         <Image 

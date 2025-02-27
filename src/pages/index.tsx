@@ -28,15 +28,24 @@ const HomePage: React.FC<HomePageProps> = ({
       <ScrollProgress color="#4ff0b7" position="top" height={3} />
 
       {/* Main content with parallax effects */}
-      <HeroSection />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <HeroSection />
+      </div>
 
-      <ParallaxSection direction="up" speed={0.3}>
-        <FeaturedProjects projects={featuredProjects} />
-      </ParallaxSection>
+      {/* Full-width section with white background that forces proper text color */}
+      <div className="w-full bg-white text-black py-12 md:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ParallaxSection direction="up" speed={0.3}>
+            <FeaturedProjects projects={featuredProjects} />
+          </ParallaxSection>
+        </div>
+      </div>
 
-      <ParallaxSection direction="down" speed={0.2}>
-        <RecentPosts posts={recentPosts} />
-      </ParallaxSection>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <ParallaxSection direction="down" speed={0.2}>
+          <RecentPosts posts={recentPosts} />
+        </ParallaxSection>
+      </div>
     </Layout>
   );
 };
