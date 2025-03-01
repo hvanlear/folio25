@@ -13,7 +13,7 @@ interface AnimateInViewProps {
 const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
   children,
   className = "",
-  animation = "",
+  animation = "fade",
   delay = 0,
   threshold = 0.2,
   once = true,
@@ -35,16 +35,20 @@ const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
         break;
       case "slide-up":
         initialStyles = { opacity: "0", transform: "translateY(20px)" };
-        targetStyles = { opacity: 1, y: 0 };
+        targetStyles = { opacity: 1, transform: "translateY(0)" };
         break;
       case "slide-right":
         initialStyles = { opacity: "0", transform: "translateX(-20px)" };
-        targetStyles = { opacity: 1, x: 0 };
+        targetStyles = { opacity: 1, transform: "translateX(0)" };
         break;
       case "scale":
         initialStyles = { opacity: "0", transform: "scale(0.9)" };
         targetStyles = { opacity: 1, scale: 1 };
         break;
+      default:
+        // No animation if not specified
+        initialStyles = {};
+        targetStyles = {};
     }
 
     // Apply initial styles

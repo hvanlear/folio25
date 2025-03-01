@@ -89,7 +89,7 @@ const HeroSection: React.FC = () => {
       <div className="container mx-auto px-4">
         {/* Hero top row - stack on mobile, flex on larger screens */}
         <div className="hero-row flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 mb-8 lg:mb-12 xl:mb-16">
-          <AnimateInView animation="fade" delay={0.1}>
+          <AnimateInView animation="slide-up" delay={0.1}>
             <div className="hero-name font-serif">
               <span className="hero-welcome block text-sm md:text-base lg:text-lg mb-1 lg:mb-2">
                 welcome, i&apos;m
