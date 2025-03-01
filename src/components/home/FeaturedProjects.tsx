@@ -13,9 +13,15 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects }) => {
     <section className="featured-projects relative">
       <div>
         <AnimateInView animation="fade" delay={0.1}>
-          <h2 className="featured-projects-title text-display-1 font-bold mb-8 text-left text-inherit">
-            Work
-          </h2>
+          {/* <h2 className="ext-display-1 font-bold mb-8 text-left text-inherit">
+            Featured
+          </h2> */}
+          <div className="featured-projects-title ">
+            <span className="hero-welcome block text-sm mb-1">
+              here&apos;s some featured
+            </span>
+            <h1 className="text-display-1 font-bold">Work</h1>
+          </div>
         </AnimateInView>
         <div className="project-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {projects.map((project, index) => (

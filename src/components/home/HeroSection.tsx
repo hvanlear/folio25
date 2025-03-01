@@ -33,6 +33,7 @@ const HeroSection: React.FC = () => {
       .toUpperCase();
   };
 
+  // Effect for updating time
   useEffect(() => {
     // Update time every minute
     const updateDateTime = () => {
@@ -44,37 +45,53 @@ const HeroSection: React.FC = () => {
     updateDateTime();
     const interval = setInterval(updateDateTime, 60000);
 
-    // Setup the animation for hero-role elements
+    return () => clearInterval(interval);
+  }, []);
+
+  // Separate effect for handling animations - will run after component mount
+  useEffect(() => {
+    // Remove any existing animate classes (in case of refresh)
+    const roleElements = document.querySelectorAll(".hero-role");
+    roleElements.forEach((el) => el.classList.remove("animate"));
+
+    // Setup the animation for hero-role elements with scroll observer
     if (rolesRef.current) {
-      const cleanupInView = inView(rolesRef.current, (entry) => {
-        // Find all .hero-role elements
-        const roleElements = entry.querySelectorAll('.hero-role');
-        
-        // Add animate class with a delay for each role
-        roleElements.forEach((el, index) => {
-          setTimeout(() => {
-            el.classList.add('animate');
-          }, 300 + (index * 200)); // Start after 300ms, then 200ms between each
-        });
-      }, { amount: 0.2 }); // Trigger when 20% of the element is in view
-      
+      const cleanupInView = inView(
+        rolesRef.current,
+        (element) => {
+          // Must have both parameters
+          // Find all .hero-role elements
+          const roleElements = element.querySelectorAll(".hero-role");
+
+          // Add animate class with a delay for each role
+          roleElements.forEach((el, index) => {
+            setTimeout(() => {
+              el.classList.add("animate");
+            }, 300 + index * 200);
+          });
+
+          // Don't return a boolean, return void or a cleanup function
+        },
+        {
+          amount: 0.2,
+          // rootMargin is not supported in Motion's inView
+        }
+      );
+
       return () => {
-        clearInterval(interval);
         cleanupInView();
       };
     }
-
-    return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="hero py-8 md:py-12">
       <div className="container mx-auto px-4">
         {/* Hero top row - stack on mobile, flex on larger screens */}
-        <div className="hero-row flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 mb-8">
-          <AnimateInView animation="slide-right" delay={0.1}>
+        <div className="hero-row flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 mb-8 lg:mb-12 xl:mb-16">
+          <AnimateInView animation="fade" delay={0.1}>
             <div className="hero-name font-serif">
-              <span className="hero-welcome block text-sm mb-1">
+              <span className="hero-welcome block text-sm md:text-base lg:text-lg mb-1 lg:mb-2">
                 welcome, i&apos;m
               </span>
               <h1 className="text-display-1 font-bold">Hunter</h1>
@@ -120,7 +137,10 @@ const HeroSection: React.FC = () => {
             </div>
           </AnimateInView>
           <AnimateInView animation="slide-up" delay={0.6}>
-            <div className="hero-roles w-full md:max-w-xs lg:max-w-md flex flex-col gap-4" ref={rolesRef}>
+            <div
+              className="hero-roles w-full md:max-w-xs lg:max-w-md flex flex-col gap-4"
+              ref={rolesRef}
+            >
               <div className="flex flex-col gap-2">
                 <span className="hero-role text-sm md:text-base font-medium">
                   DESIGN

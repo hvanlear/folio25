@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "../../components/common/Layout";
 import { getAllPosts, getPostBySlug } from "../../utils/markdown";
 import { Post } from "../../types";
+import AnimateInView from "../../components/ui/AnimateInView";
 
 interface PostPageProps {
   post: Post;
@@ -27,36 +28,42 @@ const PostPage: React.FC<PostPageProps> = ({ post }) => {
     >
       <article className="post-detail">
         <div className="container">
-          <header className="post-header">
-            <h1>{post.title}</h1>
-            <div className="post-meta">
-              <time className="post-date">
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
-              <div className="post-tags">
-                {post.tags && post.tags.map((tag) => (
-                  <span key={tag} className="tag">
-                    {tag}
-                  </span>
-                ))}
+          <AnimateInView animation="fade" delay={0.1}>
+            <header className="post-header">
+              <h1>{post.title}</h1>
+              <div className="post-meta">
+                <time className="post-date">
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+                <div className="post-tags">
+                  {post.tags && post.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          </header>
+            </header>
+          </AnimateInView>
 
           {post.image && (
-            <div className="post-image">
-              <img src={post.image} alt={post.title} />
-            </div>
+            <AnimateInView animation="scale" delay={0.2}>
+              <div className="post-image">
+                <img src={post.image} alt={post.title} />
+              </div>
+            </AnimateInView>
           )}
 
-          <div
-            className="post-content"
-            dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }}
-          />
+          <AnimateInView animation="slide-up" delay={0.3} threshold={0.05}>
+            <div
+              className="post-content"
+              dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }}
+            />
+          </AnimateInView>
         </div>
       </article>
     </Layout>
