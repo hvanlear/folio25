@@ -8,6 +8,11 @@ const config: Config = {
       center: true,
       padding: "2rem",
       screens: {
+        xs: "480px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
         "2xl": "1400px",
       },
     },
@@ -149,16 +154,32 @@ const config: Config = {
         border: "var(--border-color)",
         primary: {
           DEFAULT: "var(--primary-color)",
-          foreground: "var(--foreground)",
+          light: "var(--primary-color-light)",
+          dark: "var(--primary-color-dark)",
         },
         secondary: {
           DEFAULT: "var(--secondary-color)",
-          foreground: "var(--foreground)",
+          light: "var(--secondary-color-light)",
+          dark: "var(--secondary-color-dark)",
         },
         card: {
           DEFAULT: "var(--card-background)",
-          foreground: "var(--foreground)",
         },
+        text: "var(--text-color)",
+      },
+      // Shadows
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        DEFAULT: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+      },
+      // Spacing
+      spacing: {
+        xs: "var(--space-xs)",
+        sm: "var(--space-sm)",
+        md: "var(--space-md)",
+        lg: "var(--space-lg)",
+        xl: "var(--space-xl)",
       },
     },
   },

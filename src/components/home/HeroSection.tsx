@@ -85,25 +85,25 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="hero py-8 md:py-12">
+    <section className="min-h-screen flex items-center py-8 md:py-12 bg-background">
       <div className="container mx-auto px-4">
         {/* Hero top row - stack on mobile, flex on larger screens */}
-        <div className="hero-row flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 mb-8 lg:mb-12 xl:mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 mb-8 lg:mb-12 xl:mb-16">
           <AnimateInView animation="slide-up" delay={0.1}>
-            <div className="hero-name font-serif">
-              <span className="hero-welcome block text-sm md:text-base lg:text-lg mb-1 lg:mb-2">
+            <div className="font-serif">
+              <span className="block text-sm md:text-base lg:text-lg mb-1 lg:mb-2 opacity-80">
                 welcome, i&apos;m
               </span>
               <h1 className="text-display-1 font-bold">Hunter</h1>
             </div>
           </AnimateInView>
           <AnimateInView animation="slide-up" delay={0.3}>
-            <div className="hero-location flex flex-row gap-4 md:gap-6 text-xs">
-              <div className="hero-location-item flex flex-col text-start">
+            <div className="flex flex-row gap-4 md:gap-6 text-xs text-right opacity-80">
+              <div className="flex flex-col text-start">
                 <span>{city}</span>
                 <span>{region}</span>
               </div>
-              <div className="hero-location-item flex flex-col text-start">
+              <div className="flex flex-col text-start">
                 <span id="hero-date">{currentDate}</span>
                 <span id="hero-time">{currentTime}</span>
               </div>
@@ -112,9 +112,9 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Hero meta section - improve responsive layout */}
-        <div className="hero-meta flex flex-col md:flex-row justify-between items-start gap-8 md:gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-4 mt-8 md:mt-16 mb-8">
           <AnimateInView animation="fade" delay={0.4}>
-            <div className="social-links w-full md:w-auto">
+            <div className="w-full md:w-auto">
               <ul className="flex flex-wrap gap-4 md:gap-6">
                 <li className="text-sm md:text-base">hvanlear@gmail.com</li>
                 <li>
@@ -138,21 +138,21 @@ const HeroSection: React.FC = () => {
           </AnimateInView>
           <AnimateInView animation="slide-up" delay={0.6}>
             <div
-              className="hero-roles w-full md:max-w-xs lg:max-w-md flex flex-col gap-4"
+              className="w-full md:max-w-xs lg:max-w-md flex flex-col gap-4"
               ref={rolesRef}
             >
               <div className="flex flex-col gap-2">
-                <span className="hero-role text-sm md:text-base font-medium">
+                <span className="hero-role text-sm md:text-base font-medium relative pb-1">
                   DESIGN
                 </span>
-                <span className="hero-role text-sm md:text-base font-medium">
+                <span className="hero-role text-sm md:text-base font-medium relative pb-1">
                   DEVELOPE
                 </span>
-                <span className="hero-role text-sm md:text-base font-medium">
+                <span className="hero-role text-sm md:text-base font-medium relative pb-1">
                   & IT
                 </span>
               </div>
-              <span className="hero-role-text text-sm opacity-70 max-w-md">
+              <span className="text-sm opacity-70 max-w-md">
                 Software engineer specializing in full-stack web development
                 with React, Next.js, and modern backend technologies.
               </span>

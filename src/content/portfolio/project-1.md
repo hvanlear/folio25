@@ -3,7 +3,7 @@ title: "Project Title"
 description: "Short project description"
 date: "2023-06-15"
 tags: ["React", "Node.js", "MongoDB"]
-image: "/assets/images/projects/project-1.jpg"
+image: "/assets/images/projects/skCover.png"
 featured: true
 ---
 
@@ -26,4 +26,4 @@ Detailed description of the project goes here...
 ## Links
 
 - [Live Demo](https://example.com)
-- [GitHub Repository](https://github.com/username/repo) 
+- [GitHub Repository](https://github.com/username/repo)

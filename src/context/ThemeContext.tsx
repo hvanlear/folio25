@@ -37,10 +37,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     setIsTransitioning(true);
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
 
-    // Match this timeout to your CSS transition duration
+    // Match this timeout to CSS transition duration
     setTimeout(() => {
       setIsTransitioning(false);
-    }, 200); // Same as --theme-transition-duration
+    }, 10);
   };
 
   return (

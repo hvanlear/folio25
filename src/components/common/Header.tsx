@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
-import ThemeToggle from './ThemeToggle';
+import React from "react";
+import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 const Header: React.FC = () => {
   return (
@@ -11,37 +11,32 @@ const Header: React.FC = () => {
             My Portfolio
           </Link>
         </div>
-        
+
         {/* Navigation - hidden on mobile, visible on medium screens and up */}
         <nav className="nav hidden md:block">
-          <ul className="flex space-x-6">
+          <ul className="">
             <li>
-              <Link href="/" className="hover:opacity-70 transition-opacity">
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/portfolio" className="hover:opacity-70 transition-opacity">
-                Portfolio
-              </Link>
+              <Link href="/portfolio">Portfolio</Link>
             </li>
             <li>
-              <Link href="/blog" className="hover:opacity-70 transition-opacity">
-                Blog
-              </Link>
+              <Link href="/blog">Blog</Link>
             </li>
             <li>
-              <Link href="/about" className="hover:opacity-70 transition-opacity">
-                About
-              </Link>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/design-system">Design System</Link>
             </li>
           </ul>
         </nav>
-        
+
         <ThemeToggle />
       </div>
     </header>
   );
 };
 
-export default Header; 
+export default Header;

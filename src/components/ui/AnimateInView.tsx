@@ -2,13 +2,64 @@ import React, { PropsWithChildren } from "react";
 import { inView } from "motion";
 import { useRef, useEffect } from "react";
 
+type AnimationType = 
+  | "fade" 
+  | "slide-up" 
+  | "slide-down" 
+  | "slide-left" 
+  | "slide-right" 
+  | "scale-up" 
+  | "scale-down" 
+  | "rotate";
+
 interface AnimateInViewProps {
   className?: string;
-  animation?: "fade" | "slide-up" | "slide-right" | "scale";
+  animation?: AnimationType;
   delay?: number;
   threshold?: number;
   once?: boolean;
+  duration?: number;
+  ease?: string;
 }
+
+// Animation presets
+const animationPresets: Record<AnimationType, { 
+  initial: Record<string, string>, 
+  target: Record<string, number | string> 
+}> = {
+  "fade": {
+    initial: { opacity: "0" },
+    target: { opacity: 1 }
+  },
+  "slide-up": {
+    initial: { opacity: "0", transform: "translateY(20px)" },
+    target: { opacity: 1, transform: "translateY(0)" }
+  },
+  "slide-down": {
+    initial: { opacity: "0", transform: "translateY(-20px)" },
+    target: { opacity: 1, transform: "translateY(0)" }
+  },
+  "slide-left": {
+    initial: { opacity: "0", transform: "translateX(20px)" },
+    target: { opacity: 1, transform: "translateX(0)" }
+  },
+  "slide-right": {
+    initial: { opacity: "0", transform: "translateX(-20px)" },
+    target: { opacity: 1, transform: "translateX(0)" }
+  },
+  "scale-up": {
+    initial: { opacity: "0", transform: "scale(0.9)" },
+    target: { opacity: 1, transform: "scale(1)" }
+  },
+  "scale-down": {
+    initial: { opacity: "0", transform: "scale(1.1)" },
+    target: { opacity: 1, transform: "scale(1)" }
+  },
+  "rotate": {
+    initial: { opacity: "0", transform: "rotate(-5deg)" },
+    target: { opacity: 1, transform: "rotate(0deg)" }
+  }
+};
 
 const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
   children,
@@ -17,6 +68,8 @@ const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
   delay = 0,
   threshold = 0.2,
   once = true,
+  duration = 0.6,
+  ease = "easeOut"
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -24,32 +77,11 @@ const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
     if (!ref.current) return;
 
     const element = ref.current;
-    let initialStyles: Record<string, string> = {};
-    let targetStyles: Record<string, number | string> = {};
-
-    // Set initial styles based on animation type
-    switch (animation) {
-      case "fade":
-        initialStyles = { opacity: "0" };
-        targetStyles = { opacity: 1 };
-        break;
-      case "slide-up":
-        initialStyles = { opacity: "0", transform: "translateY(20px)" };
-        targetStyles = { opacity: 1, transform: "translateY(0)" };
-        break;
-      case "slide-right":
-        initialStyles = { opacity: "0", transform: "translateX(-20px)" };
-        targetStyles = { opacity: 1, transform: "translateX(0)" };
-        break;
-      case "scale":
-        initialStyles = { opacity: "0", transform: "scale(0.9)" };
-        targetStyles = { opacity: 1, scale: 1 };
-        break;
-      default:
-        // No animation if not specified
-        initialStyles = {};
-        targetStyles = {};
-    }
+    
+    // Get the animation preset
+    const preset = animationPresets[animation] || animationPresets.fade;
+    const initialStyles = preset.initial;
+    const targetStyles = preset.target;
 
     // Apply initial styles
     Object.entries(initialStyles).forEach(([key, value]) => {
@@ -68,8 +100,9 @@ const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
         // Using Motion's animate function on the element
         import("motion").then(({ animate: motionAnimate }) => {
           motionAnimate(element, targetStyles, {
-            duration: 0.6,
+            duration,
             delay,
+            ease
           });
 
           // Store the animate function for cleanup use
@@ -83,7 +116,8 @@ const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
               // Use animate function for exit animation if available
               if ((element as any)._motionAnimate) {
                 (element as any)._motionAnimate(element, initialStyles, {
-                  duration: 0.6,
+                  duration: duration / 2,
+                  ease
                 });
               } else {
                 // Fallback to direct style setting
@@ -99,7 +133,7 @@ const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
     );
 
     return () => stop();
-  }, [animation, delay, threshold, once]);
+  }, [animation, delay, threshold, once, duration, ease]);
 
   return (
     <div ref={ref} className={className}>
@@ -109,3 +143,6 @@ const AnimateInView: React.FC<PropsWithChildren<AnimateInViewProps>> = ({
 };
 
 export default AnimateInView;
+
+// Export animation types for reuse
+export type { AnimationType };
