@@ -33,7 +33,7 @@ const HomePage: React.FC<HomePageProps> = ({
       </ParallaxSection>
 
       <ParallaxSection direction="up" speed={0.3}>
-        <div className="w-full bg-white dark:bg-gray-100 text-black dark:text-white py-12 md:py-16 relative">
+        <div className="w-full bg-white text-black py-12 md:py-16 relative">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <FeaturedProjects projects={featuredProjects} />
           </div>

@@ -23,7 +23,7 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects }) => {
             <h1 className="text-display-1 font-bold">Work</h1>
           </div>
         </AnimateInView>
-        <div className="project-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="">
           {projects.map((project, index) => (
             <AnimateInView
               key={project.slug}
