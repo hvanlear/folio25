@@ -91,9 +91,25 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 mb-8 lg:mb-12 xl:mb-16">
           <AnimateInView animation="slide-up" delay={0.1}>
             <div className="font-serif">
-              <span className="block text-sm md:text-base lg:text-lg mb-1 lg:mb-2 opacity-80">
-                welcome, i&apos;m
-              </span>
+              <div className=" flex flex-row items-center gap-2 text-sm md:text-base lg:text-lg mb-1 lg:mb-2 opacity-80">
+                welcome, i&apos;m{" "}
+                <div className="animate-bounce mt-4 md:block">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                  </svg>
+                </div>
+              </div>
               <h1 className="text-display-1 font-bold">Hunter</h1>
             </div>
           </AnimateInView>
@@ -112,7 +128,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Hero meta section - improve responsive layout */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-4 mt-8 md:mt-16 mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4 mt-8 md:mt-16 mb-8">
           <AnimateInView animation="fade" delay={0.4}>
             <div className="w-full md:w-auto">
               <ul className="flex flex-wrap gap-4 md:gap-6">

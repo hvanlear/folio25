@@ -1,29 +1,46 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Project } from "../../types";
+import { inView } from "motion";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const cardRef = React.useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+
+    const cleanup = inView(
+      cardRef.current,
+      (element) => {
+        element.classList.add("animate");
+      },
+      {
+        amount: 0.2,
+      }
+    );
+
+    return () => cleanup();
+  }, []);
 
   return (
     <div
       ref={cardRef}
-      className="max-w-7xl mx-auto border-t-2 border-gray-300 mb-8 text-black dark:text-black"
+      className="project-card max-w-7xl mx-auto mb-8 text-black dark:text-black"
     >
-      <div className="grid grid-cols-12 gap-x-4 gap-y-2 mt-4">
+      <div className="grid grid-cols-12 gap-x-4 gap-y-2 ">
         {/* First row: Headers */}
-        <div className="col-span-6 sm:col-span-8 text-sm text-gray-600 font-medium">
+        <div className="col-span-6 sm:col-span-8 text-sm text-gray-600 font-medium mt-4">
           PROJECT NO{" "}
         </div>
-        <div className="col-span-3 sm:col-span-2 text-sm text-gray-600 font-medium">
+        <div className="col-span-3 sm:col-span-2 text-sm text-gray-600 font-medium mt-4">
           EXPERTISE
         </div>
-        <div className="col-span-3 sm:col-span-2 text-sm text-gray-600 font-medium">
+        <div className="col-span-3 sm:col-span-2 text-sm text-gray-600 font-medium mt-4">
           CLIENT
         </div>
 

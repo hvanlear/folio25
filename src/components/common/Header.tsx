@@ -1,15 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./Logo";
 
 const Header: React.FC = () => {
   return (
     <header className="header py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="logo">
-          <Link href="/" className="text-xl font-bold">
-            My Portfolio
-          </Link>
+        <div className="mix-blend-difference z-50">
+          <Logo />
         </div>
 
         {/* Navigation - hidden on mobile, visible on medium screens and up */}
