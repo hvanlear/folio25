@@ -458,7 +458,6 @@ a:hover {
 }
 
 .project-card::before {
-
   content: '';
   position: absolute;
   left: 0;
@@ -477,4 +476,31 @@ a:hover {
 .project-card.animate::before {
   transform: scaleX(1);
   transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Add this to your globals.css */
+@media (max-width: 640px) {
+  /* First column headers and values */
+  .project-card-header:nth-child(1),
+  .project-card-header-value:nth-child(5) {
+    grid-column: 1 / span 6;
+  }
+  
+  /* Second column headers and values */
+  .project-card-header:nth-child(2),
+  .project-card-header-value:nth-child(6) {
+    grid-column: 7 / span 6;
+  }
+  
+  /* Third column headers and values */
+  .project-card-header:nth-child(3),
+  .project-card-header-value:nth-child(7) {
+    grid-column: 1 / span 6;
+  }
+  
+  /* Fourth column headers and values */
+  .project-card-header:nth-child(4),
+  .project-card-header-value:nth-child(8) {
+    grid-column: 7 / span 6;
+  }
 }

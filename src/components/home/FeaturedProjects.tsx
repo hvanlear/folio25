@@ -10,20 +10,20 @@ interface FeaturedProjectsProps {
 
 const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects }) => {
   return (
-    <section className="featured-projects relative">
+    <section className="featured-projects relative py-16">
       <div>
         <AnimateInView animation="fade" delay={0.1}>
           {/* <h2 className="ext-display-1 font-bold mb-8 text-left text-inherit">
             Featured
           </h2> */}
-          <div className="featured-projects-title ">
-            <span className="hero-welcome block text-sm mb-1">
+          <div className="featured-projects-title">
+            <span className="hero-welcome block text-sm mb-2 text-gray-500 uppercase tracking-wider">
               here&apos;s some featured
             </span>
             <h1 className="text-display-1 font-bold">Work</h1>
           </div>
         </AnimateInView>
-        <div className="">
+        <div className="space-y-24">
           {projects.map((project, index) => (
             <AnimateInView
               key={project.slug}
@@ -36,7 +36,7 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects }) => {
           ))}
         </div>
         <AnimateInView animation="fade" delay={0.4} threshold={0.2}>
-          <div className="section-footer mt-10 text-center">
+          <div className="section-footer mt-16 text-center">
             <Link
               href="/portfolio"
               className="btn btn-outline inline-block px-6 py-3 border border-current rounded-md hover:opacity-80 transition-opacity"
