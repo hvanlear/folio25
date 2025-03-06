@@ -7,4 +7,6 @@ export interface Project {
   image: string;
   featured?: boolean;
   contentHtml?: string;
-} 
+  github?: string;
+  demo?: string;
+}
