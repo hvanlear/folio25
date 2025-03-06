@@ -2,13 +2,15 @@ import React from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
+import ColorBar from "../ui/ColorBar";
 
 const Header: React.FC = () => {
   return (
-    <header className="header py-4">
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="mix-blend-difference z-50">
+    <header className="header sticky top-0 z-50 mix-blend-difference">
+      <div className="container mx-auto px-4 flex justify-between items-center mix-blend-difference">
+        <div className="mix-blend-difference z-50 w-20 ">
           <Logo />
+          <ColorBar />
         </div>
 
         {/* Navigation - hidden on mobile, visible on medium screens and up */}

@@ -504,3 +504,8 @@ a:hover {
     grid-column: 7 / span 6;
   }
 }
+
+/* Add this to your globals.css */
+.duration-2000 {
+  transition-duration: 2000ms;
+}
