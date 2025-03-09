@@ -30,11 +30,11 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`header sticky top-0 z-50 mix-blend-difference transition-transform duration-300 ${
+      className={`header sticky top-0 z-50 transition-transform duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center mix-blend-difference">
+      <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="mix-blend-difference z-50 w-20">
           <Logo />
           <ColorBar />
@@ -44,7 +44,12 @@ const Header: React.FC = () => {
         <nav className="nav hidden md:block">
           <ul className="">
             <li>
-              <Link href="/">Home</Link>
+              <Link
+                href="/"
+                className="text-text hover:text-primary transition-colors"
+              >
+                Home
+              </Link>
             </li>
             <li>
               <Link href="/portfolio">Portfolio</Link>

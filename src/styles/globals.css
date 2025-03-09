@@ -142,7 +142,7 @@ a:hover {
   }
   
   .nav a {
-    @apply text-text hover:text-primary transition-colors;
+    @apply text-text hover:text-primary transition-colors font-bold;
   }
   
   /* Theme Toggle */
