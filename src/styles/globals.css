@@ -124,7 +124,7 @@ a:hover {
   
   /* Header Styles */
   .header {
-    @apply h-[var(--header-height)] border-b border-border flex items-center;
+    @apply h-[var(--header-height)]  border-border flex items-center;
   }
   
   .header .container {

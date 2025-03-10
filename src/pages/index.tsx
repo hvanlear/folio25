@@ -27,7 +27,7 @@ const HomePage: React.FC<HomePageProps> = ({
       <ScrollProgress color="#4ff0b7" position="top" height={3} />
 
       <ParallaxSection direction="up" speed={0.1}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <HeroSection />
         </div>
       </ParallaxSection>

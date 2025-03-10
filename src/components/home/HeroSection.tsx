@@ -105,28 +105,26 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center py-8 md:py-12 bg-background">
+    <section className="min-h-screen flex items-center bg-background">
       <div className="container mx-auto px-4">
         {/* Welcome row - full width */}
         <div className="mb-6 md:mb-8">
           <AnimateInView animation="slide-up" delay={0.1}>
             <div className="font-serif">
-              <div className="flex flex-row items-center gap-2 text-sm md:text-base lg:text-lg opacity-80">
+              <div className="flex flex-row items-center gap-2 text-sm md:text-base lg:text-xl opacity-80">
                 welcome, i&apos;m{" "}
-                <div className="animate-bounce mt-4 md:block">
+                <div className=" mt-4 md:block">
                   <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
                     fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <polyline points="19 12 12 19 5 12"></polyline>
+                    <path
+                      d="M10.1464 14.2832C10.3417 14.4785 10.6583 14.4785 10.8536 14.2832L14.8536 10.2832C15.0488 10.088 15.0488 9.7714 14.8536 9.57613C14.6583 9.38087 14.3417 9.38087 14.1464 9.57613L11 12.7226V2.92969C11 1.54898 9.88071 0.429688 8.5 0.429688H0.5C0.223858 0.429688 0 0.653545 0 0.929688C0 1.20583 0.223858 1.42969 0.5 1.42969H8.5C9.32843 1.42969 10 2.10126 10 2.92969V12.7226L6.85355 9.57613C6.65829 9.38087 6.34171 9.38087 6.14645 9.57613C5.95118 9.7714 5.95118 10.088 6.14645 10.2832L10.1464 14.2832Z"
+                      fill="currentColor"
+                    />
                   </svg>
                 </div>
               </div>
@@ -152,7 +150,7 @@ const HeroSection: React.FC = () => {
             <AnimateInView animation="slide-up" delay={0.3}>
               <div
                 id="hero-date-time"
-                className="flex flex-row gap-4 md:gap-6 text-xs opacity-80"
+                className="flex flex-row gap-4 md:gap-6 text-xs opacity-80 content-center mt-8"
               >
                 <div className="flex flex-col text-start">
                   <span>{city}</span>
@@ -172,7 +170,7 @@ const HeroSection: React.FC = () => {
           {/* Left column - social links */}
           <div
             id="hero-social-links-container"
-            className="mb-8 md:mb-0"
+            className="mb-8 md:mb-0 content-center"
             ref={socialContainerRef}
           >
             <AnimateInView animation="fade" delay={0.4}>

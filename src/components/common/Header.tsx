@@ -30,11 +30,11 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`header sticky top-0 z-50 transition-transform duration-300 ${
+      className={`header sticky top-0 z-50 transition-transform duration-300 mix-blend-difference ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
+      <div className=" mix-blend-difference container mx-auto px-4 flex justify-between items-center">
         <div className="mix-blend-difference z-50 w-20">
           <Logo />
           <ColorBar />
