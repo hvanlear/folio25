@@ -108,7 +108,7 @@ const HeroSection: React.FC = () => {
     <section className="min-h-screen flex items-center bg-background">
       <div className="container mx-auto px-4">
         {/* Welcome row - full width */}
-        <div className="mb-6 md:mb-8">
+        <div className="ml-4">
           <AnimateInView animation="slide-up" delay={0.1}>
             <div className="font-serif">
               <div className="flex flex-row items-center gap-2 text-sm md:text-base lg:text-xl opacity-80">
@@ -145,20 +145,34 @@ const HeroSection: React.FC = () => {
           </div>
           <div
             id="hero-date-time-container"
-            className="flex-1 mb-8 md:mb-0 md:flex md:flex-col md:justify-end"
+            className="flex-1 mb-8 md:mb-0 md:flex md:flex-col justify-center mt-8"
           >
             <AnimateInView animation="slide-up" delay={0.3}>
               <div
                 id="hero-date-time"
-                className="flex flex-row gap-4 md:gap-6 text-xs opacity-80 content-center mt-8"
+                className="flex flex-row gap-4 md:gap-6 text-xs opacity-80 justify-end mt-4"
               >
                 <div className="flex flex-col text-start">
-                  <span>{city}</span>
-                  <span>{region}</span>
+                  <span className="text-xs uppercase tracking-wider">
+                    {city}
+                  </span>
+                  <span className="text-xs uppercase tracking-wider">
+                    {region}
+                  </span>
                 </div>
                 <div className="flex flex-col text-start">
-                  <span id="hero-date">{currentDate}</span>
-                  <span id="hero-time">{currentTime}</span>
+                  <span
+                    className="text-xs uppercase tracking-wider"
+                    id="hero-date"
+                  >
+                    {currentDate}
+                  </span>
+                  <span
+                    className="text-xs uppercase tracking-wider"
+                    id="hero-time"
+                  >
+                    {currentTime}
+                  </span>
                 </div>
               </div>
             </AnimateInView>
@@ -174,7 +188,7 @@ const HeroSection: React.FC = () => {
             ref={socialContainerRef}
           >
             <AnimateInView animation="fade" delay={0.4}>
-              <div>
+              <div className="ml-4">
                 <ul className="flex flex-wrap gap-4 md:gap-6">
                   <li className="text-sm md:text-base">hvanlear@gmail.com</li>
                   <li>
@@ -202,15 +216,15 @@ const HeroSection: React.FC = () => {
           <div id="hero-roles-container" className="flex-1">
             <AnimateInView animation="slide-up" delay={0.6}>
               <div className="flex flex-col gap-4" ref={rolesRef}>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-4">
                   <span className="hero-role text-sm md:text-base font-medium relative pb-1">
-                    DESIGN
+                    Designer
                   </span>
                   <span className="hero-role text-sm md:text-base font-medium relative pb-1">
-                    DEVELOPE
+                    Developer
                   </span>
                   <span className="hero-role text-sm md:text-base font-medium relative pb-1">
-                    & IT
+                    & Problem Solver
                   </span>
                 </div>
                 <span className="text-sm opacity-70 max-w-md">
