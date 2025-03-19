@@ -28,7 +28,8 @@ const Layout: React.FC<LayoutProps> = ({
 
   return (
     <div
-      className={`min-h-screen flex flex-col ${theme} ${figtree.variable} antialiased`}
+      className={`min-h-screen flex flex-col ${figtree.variable} antialiased`}
+      data-theme={theme}
     >
       <Head>
         <title>{title}</title>

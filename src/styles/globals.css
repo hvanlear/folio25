@@ -49,7 +49,7 @@
   --line-height-loose: 2;
   
   /* Transitions */
-  --theme-transition-duration: 10ms;
+  --theme-transition-duration: 300ms;
   --theme-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Fonts */
@@ -90,10 +90,41 @@
   padding: 0;
 }
 
+/* Base styles with no transitions by default */
 *, *::before, *::after {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-duration: 3ms;
-  transition-timing-function: var(--theme-transition-ease);
+  transition-property: none;
+}
+
+/* Apply transitions only when theme is changing - with timing hierarchy */
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms; /* Default delay */
+}
+
+/* Ensure all elements transition at exactly the same time */
+.theme-transitioning body,
+.theme-transitioning #__next,
+.theme-transitioning .hero,
+.theme-transitioning main,
+.theme-transitioning header,
+.theme-transitioning footer,
+.theme-transitioning section,
+.theme-transitioning article,
+.theme-transitioning div,
+.theme-transitioning p,
+.theme-transitioning h1, 
+.theme-transitioning h2, 
+.theme-transitioning h3,
+.theme-transitioning h4,
+.theme-transitioning h5,
+.theme-transitioning h6,
+.theme-transitioning button,
+.theme-transitioning a {
+  transition-delay: 0ms !important;
 }
 
 html {
@@ -429,16 +460,28 @@ a:hover {
   }
 }
 
-/* Remove any other transition declarations that might be causing the stagger */
-.bg-background {
-  transition: none;
+/* Theme toggle animation */
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: none;
+  outline: none;
 }
 
-/* For the hero section specifically */
-.hero, .hero .container, .hero * {
-  transition-duration: 3ms !important;
-  transition-delay: 0ms !important;
+.theme-toggle:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
+
+/* Remove class since we're now synchronizing all transitions */
 
 /* Remove these classes */
 /* .featured-section {

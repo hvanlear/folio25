@@ -1,50 +1,78 @@
-import React, { createContext, useState, useEffect, ReactNode } from "react";
-import { ThemeContextType } from "../types";
+import React, { createContext, useState, useEffect, ReactNode, useCallback } from "react";
+import { ThemeContextType, Theme } from "../types";
 
-export const ThemeContext = createContext<ThemeContextType | undefined>(
-  undefined
-);
+export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
+// Default theme matching the _document.js script's initial setting
+const DEFAULT_THEME: Theme = "light";
+
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  // Use a simple initialization to avoid hydration mismatch
+  const [theme, setTheme] = useState<Theme>(DEFAULT_THEME);
+  const [mounted, setMounted] = useState(false);
 
+  // Initialize theme after component is mounted to prevent hydration mismatch
   useEffect(() => {
-    // Check for saved theme preference or system preference
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    if (savedTheme) {
+    setMounted(true);
+    
+    // Get theme from localStorage or system preference
+    const savedTheme = localStorage.getItem("theme") as Theme | null;
+    if (savedTheme === "light" || savedTheme === "dark") {
       setTheme(savedTheme);
-    } else if (prefersDark) {
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setTheme("dark");
     }
   }, []);
 
+  // Apply theme changes to document
   useEffect(() => {
-    // Apply theme to document
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    if (!mounted) return;
+    
+    const root = document.documentElement;
+    
+    // Start the transition coordination
+    const startTransition = () => {
+      // Add transitioning class to enable all transitions
+      document.body.classList.add("theme-transitioning");
+      
+      // Apply theme class and data attribute
+      if (theme === "dark") {
+        root.classList.add("dark");
+      } else {
+        root.classList.remove("dark");
+      }
+      root.setAttribute("data-theme", theme);
+      
+      // Save theme preference to localStorage
+      localStorage.setItem("theme", theme);
+    };
+    
+    // Use requestAnimationFrame to ensure synchronized transitions
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        startTransition();
+      });
+    });
+    
+    // Remove the transitioning class after the transition completes
+    const timer = setTimeout(() => {
+      document.body.classList.remove("theme-transitioning");
+    }, 400); // Slightly longer than the CSS transition duration to ensure completion
+    
+    return () => clearTimeout(timer);
+  }, [theme, mounted]);
 
-  const toggleTheme = () => {
-    setIsTransitioning(true);
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-
-    // Match this timeout to CSS transition duration
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 10);
-  };
+  // Toggle between light and dark theme
+  const toggleTheme = useCallback(() => {
+    setTheme(currentTheme => currentTheme === "light" ? "dark" : "light");
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isTransitioning }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
